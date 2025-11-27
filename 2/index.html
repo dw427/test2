@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>35a generation that has lost romance</title>
+  <title>36a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -115,7 +115,8 @@
       .gallery-wrap {
         display: grid;
         height: 100%;
-        grid-template-columns: 24.68% 33.10% 17.55% 24.68%;
+        /* grid 합계를 100% 정확히 맞춰서 1px 오차 제거 */
+        grid-template-columns: 24.68% 33.12% 17.55% 24.65%;
         gap: 0;
       }
 
@@ -123,7 +124,6 @@
         max-width: 373px; 
         height: 100%; 
         overflow: hidden; 
-        margin-right: -1px; /* 여백 제거 */
       }
       .fixed-image {
         max-width: 500px; 
@@ -131,8 +131,8 @@
         overflow-y: auto;
         position: relative;
         box-sizing: border-box;
-        border-left: 1px solid #9fa0a0;
-        border-right: 1px solid #9fa0a0;
+        border: none; /* border 제거 */
+        box-shadow: inset 1px 0 0 #9fa0a0, inset -1px 0 0 #9fa0a0; /* 시각적 경계 유지 */
       }
       .scroll-area {
         max-width: 265px; 
@@ -140,7 +140,7 @@
         overflow-y: auto; 
         position: relative;
         box-sizing: border-box;
-        border-right: 1px solid #9fa0a0;
+        border: none;
       }
       .slide-box { max-width: 373px; height: 100%; overflow-y: auto; position: relative; transform: none !important; }
 
