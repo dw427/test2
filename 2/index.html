@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>27a generation that has lost romance</title>
+  <title>28a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -40,9 +40,7 @@
     .slide-box.active { transform: translateX(0); }
 
     .slide-box .slide-list {
-      position: fixed;
-      bottom: 10px;
-      right: 30px;
+      position: fixed; bottom: 10px; right: 30px;
       font-size: 12px;
       cursor: pointer;
       transition: color .3s;
@@ -64,10 +62,7 @@
       gap: 0;
     }
     .thumbnail { display: flex; flex-direction: column; color: inherit; }
-    .thumbnail img {
-      width: 100%; height: auto; object-fit: cover; display: block;
-      cursor: pointer;
-    }
+    .thumbnail img { width: 100%; height: auto; object-fit: cover; display: block; cursor: pointer; }
     .caption { display: flex; flex-direction: column; margin-top: 8px; font-size: 12px; align-items: flex-start; }
     .caption .title { margin-bottom: 0; }
     .caption .category-year { display: flex; align-items: center; }
@@ -79,8 +74,7 @@
     .header { display: none; }
 
     .image-viewer {
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
       background: rgba(0,0,0,0.85);
       display: flex;
@@ -96,7 +90,7 @@
       font-size: 28px; color: #fff; cursor: pointer; font-family: sans-serif;
     }
 
-    /* 모바일 */
+    /* 모바일 유지 */
     @media (max-width: 768px) {
       .gallery-wrap { display: block; }
       .left-image { display: none; }
@@ -118,33 +112,33 @@
     @media (min-width: 769px) {
       html, body { width: 100%; height: 100%; overflow: hidden; }
 
-      /* 픽셀 기반 grid: 여백 제거 */
       .gallery-wrap {
         display: grid;
         height: 100%;
-        grid-template-columns: 373px 500px 265px 373px;
-        gap: 0;
+        grid-template-columns: 24.68% 33.10% 17.55% 24.68%;
+        gap: 0; /* 컬럼 간격 제거 */
       }
 
-      .left-image { width: 373px; height: 100%; overflow: hidden; }
+      .left-image { max-width: 373px; height: 100%; overflow: hidden; }
       .fixed-image {
-        width: 500px; height: 100%; overflow-y: auto;
+        max-width: 500px; height: 100%;
+        overflow-y: auto;
         position: relative;
-        border-left:1px solid #9fa0a0;
-        border-right:1px solid #9fa0a0;
         box-sizing: border-box;
+        border-left: 1px solid #9fa0a0;
+        border-right: 1px solid #9fa0a0;
       }
       .scroll-area {
-        width: 265px; height: 100vh; overflow-y: auto;
-        position: relative;
-        border-right:1px solid #9fa0a0;
+        max-width: 265px; height: 100vh;
+        overflow-y: auto; position: relative;
         box-sizing: border-box;
+        border-right: 1px solid #9fa0a0;
       }
-      .slide-box { width: 373px; height: 100%; overflow-y: auto; position: relative; transform: none !important; }
+      .slide-box { max-width: 373px; height: 100%; overflow-y: auto; position: relative; transform: none !important; }
 
-      .left-image img { width:100%; height:100%; object-fit:cover; }
-      .fixed-image img { width:100%; height:auto; cursor:pointer; }
-      .thumbnail { margin-bottom:8px; }
+      .left-image img { width: 100%; height: 100%; object-fit: cover; }
+      .fixed-image img { width: 100%; height: auto; cursor: pointer; }
+      .thumbnail { margin-bottom: 8px; }
       .slide-list, #listButton { display: none; }
     }
   </style>
