@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>40a generation that has lost romance</title>
+  <title>41a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -104,7 +104,7 @@
       .slide-box .slide-list { bottom: 20px; right: 20px; }
       .header { width: 100%; height: 60px; background: #fff; display: flex; align-items: center; justify-content: center; position: sticky; top:0; z-index:1000; }
       .header img { height: 100%; width: auto; }
-      .slide-box { transform: translateX(100%) !important; }
+      .slide-box { transform: translateX(100%) !important; } /* 기본 닫힘 */
       .slide-box.active { transform: translateX(0) !important; }
     }
 
@@ -174,15 +174,16 @@
       <div class="content" id="gallery"></div>
     </div>
 
-    <div class="slide-box active" id="slideBox">
-      <div class="slide-list" id="slideToggleText" onclick="toggleSlideBox()">close</div>
+    <!-- 모바일 기본 닫힘: active 제거 -->
+    <div class="slide-box" id="slideBox">
+      <div class="slide-list" id="slideToggleText" onclick="toggleSlideBox()">list</div>
       <div class="caption-group" id="captionBox"></div>
     </div>
   </div>
 
   <div class="footer">
     <div class="right-link"><a href="/alfoze/">back</a></div>
-    <div id="listButton" onclick="toggleSlideBox()">close</div>
+    <div id="listButton" onclick="toggleSlideBox()">list</div>
   </div>
 
   <div class="image-viewer" id="imageViewer">
@@ -239,6 +240,16 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       loadData();
+
+      // 모바일 기본 닫힘 초기화
+      if (window.innerWidth <= 768) {
+        const sb = document.getElementById('slideBox');
+        const txt = document.getElementById('slideToggleText');
+        sb.classList.remove('active');
+        txt.textContent = 'list';
+        document.getElementById('listButton').textContent = 'list';
+      }
+
       const viewer = document.getElementById("imageViewer");
       const viewerImg = viewer.querySelector("img");
       document.querySelectorAll(".fixed-image img").forEach(img => {
