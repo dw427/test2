@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>11a generation that has lost romance</title>
+  <title>12a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -11,129 +11,136 @@
     @import url("https://use.typekit.net/zuk4pzv.css");
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: "minion-pro", serif; background: #fff; }
+
     a { color: inherit; text-decoration: none; transition: color .3s; }
     a:hover { color: #a3a3a3; }
 
     .footer {
       position: fixed; bottom: 0; left: 0;
       width: 100%; height: 100px; background: transparent;
-      z-index: 1000; color: #a3a3a3;
+      z-index: 1000;
+      color: #a3a3a3;
     }
-    .footer .right-link { position: absolute; bottom: 10px; left: 30px; font-size: 12px; }
+    .footer .right-link,
+    .footer #listButton {
+      position: absolute; bottom: 10px; font-size: 12px;
+    }
+    .footer .right-link { left: 30px; }
+    .footer #listButton { right: 30px; cursor: pointer; }
+    .footer #listButton:hover { color: #7a7a7a; }
+
+    .slide-box {
+      position: relative; top: 0; right: 0;
+      width: 373px; height: 100%;
+      background: #fff;
+      overflow-y: auto;
+      padding: 10px 10px;
+    }
+
+    .caption-group {
+      display: flex; flex-direction: column; font-size: 12px;
+    }
+    .caption1 { font-size: 20px; margin-bottom: 3px; }
+    .caption2 { font-size: 12px; margin-bottom: 20px; }
+    .caption3 { font-size: 12px; margin-bottom: 3px; }
+    .caption4 { font-size: 12px; margin-bottom: 3px; }
+    .caption5 { font-size: 12px; }
+
+    .content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+    }
+    .thumbnail {
+      display: flex; flex-direction: column; color: inherit;
+    }
+    .thumbnail img {
+      width: 100%; height: auto; object-fit: cover; display: block;
+      cursor: pointer;
+    }
+    .caption {
+      display: flex; flex-direction: column;
+      margin-top: 8px; font-size: 12px;
+      align-items: flex-start;
+    }
+    .caption .title { margin-bottom: 0; }
+    .caption .category-year { display: flex; align-items: center; }
+    .caption .category { margin-right: 10px; }
 
     ::-webkit-scrollbar { display: none; }
     .scroll-area, .fixed-image { scrollbar-width: none; -ms-overflow-style: none; }
 
-    /* 📌 모바일에서 헤더 필요 */
     .header { display: none; }
 
     .image-viewer {
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
       background: rgba(0,0,0,0.85);
-      display: flex; justify-content: center; align-items: center;
-      opacity: 0; visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
       transition: opacity .3s ease;
       z-index: 5000;
     }
     .image-viewer.active { opacity: 1; visibility: visible; }
-    .image-viewer img {
-      max-width: 90%; max-height: 90%;
-      object-fit: contain;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    .image-viewer img { max-width: 90%; max-height: 90%; object-fit: contain; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+    .image-viewer::after {
+      content: '×';
+      position: fixed; top: 20px; right: 30px;
+      font-size: 28px; color: #fff; cursor: pointer; font-family: sans-serif;
     }
 
-    /* ======================
-        📌 PC 웹
-        모바일 UI 유지 + PC에서는 토글 비활성 + 항상 노출
-    =======================*/
-    @media (min-width: 769px) {
-
-      html, body { width: 100%; height: 100%; overflow: hidden; }
-
-      .gallery-wrap {
-        display: grid;
-        grid-template-columns: 373px 500px 265px 373px;
-        width: 100%; height: 100vh;
-      }
-
-      .left-image img {
-        width: 100%; height: 100%;
-        object-fit: cover;
-        cursor: default;
-      }
-
-      .fixed-image {
-        width: 500px; height: 100%;
-        overflow-y: scroll;
-        border-left: 1px solid #9fa0a0;
-        border-right: 1px solid #9fa0a0;
-      }
-      .fixed-image img {
-        width: 100%; height: auto;
-        display: block; cursor: pointer;
-      }
-
-      .scroll-area {
-        width: 265px; height: 100%;
-        overflow-y: scroll;
-        border-right: 1px solid #9fa0a0;
-      }
-
-      /* 📌 scroll image 확대 방지 */
-      .scroll-area img {          /* ← 📌 수정 */
-        width: 100%;
-        height: auto;
-        max-width: none;         /* 확대 금지 */
-        object-fit: contain;
-      }
-
-      /* 📌 토글 기능 OFF + 항상 열림 + 디자인 그대로 유지 */
-      .slide-box {
-        transform: none !important;         /* 강제 열림 */
-        position: static !important;
-        width: 100% !important;
-      }
-      .slide-list { display: none !important; } /* 버튼 숨김 */
-
-      .caption-group { font-size: 12px; text-align: center; }
-      .caption1 { font-size: 20px; margin-bottom: 5px; }
-      .caption2 { margin-bottom: 15px; }
-      .caption3, .caption4, .caption5 { margin-bottom: 4px; }
-
-      /* 📌 PC에서는 헤더 없음 그대로 유지 */
-      .header { display: none !important; }
-    }
-
-    /* =====================
-        📌 모바일 원본 유지
-    ======================*/
     @media (max-width: 768px) {
       .gallery-wrap { display: block; }
       .left-image { display: none; }
-      .fixed-image { width: 100%; border-left: none; border-right: none; }
-      .fixed-image img { width: 100%; height: auto; }
+      .fixed-image { width: 100%; padding: 0; display: flex; flex-direction: column; align-items: center; border-left: none; border-right: none; }
+      .fixed-image img { width: 100%; height: auto; display: block; }
       .scroll-area { display: none; }
+      .footer { height: 100px; }
+      .footer .right-link { bottom: 20px; left: 20px; }
+      .footer #listButton { bottom: 20px; right: 20px; }
+      .slide-box { width: 100% !important; padding: 40px 20px; }
+      .slide-box .slide-list { bottom: 20px; right: 20px; }
+      .header { width: 100%; height: 60px; background: #ffffff; display: flex; align-items: center; justify-content: center; position: sticky; top: 0; z-index: 1000; }
+      .header img { height: 100%; width: auto; }
+    }
 
-      .header {
-        width: 100%; height: 60px; background: #ffffff;
-        display: flex; align-items: center; justify-content: center;
-        position: sticky; top: 0; z-index: 1000;
+    @media (min-width: 769px) {
+      html, body { width: 100%; height: 100%; overflow: hidden; }
+      .gallery-wrap {
+        display: flex;
+        height: 100%;
+        width: 100%;
       }
 
-      /* 📌 모바일 토글형 유지 */
-      .slide-box {
-        width: 100% !important;
-        padding: 40px 20px;
-        transform: translateX(100%);
-        transition: transform .3s;
+      /* 4단 구성: left + fixed + scroll + slide */
+      .left-image, .fixed-image, .scroll-area, .slide-box {
+        height: 100%;
       }
-      .slide-box.active { transform: translateX(0); }
+
+      .fixed-image { width: 500px; overflow-y: scroll; border-left: 1px solid #9fa0a0; border-right: 1px solid #9fa0a0; flex-shrink: 0; }
+      .scroll-area { width: 265px; overflow-y: scroll; border-right: 1px solid #9fa0a0; flex-shrink: 0; }
+      .left-image, .slide-box {
+        /* 나머지 공간 반반 */
+        width: calc((100% - 500px - 265px)/2);
+        flex-shrink: 0;
+      }
+
+      .left-image img, .slide-box { width: 100%; height: 100%; object-fit: cover; }
+
+      .thumbnail { margin-bottom: 8px; }
     }
   </style>
 </head>
-<body>
+
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+  <div class="header">
+    <a href="/alfoze/" style="display:block; height:100%;">
+      <img src="/alfoze/images/header.png" alt="header" />
+    </a>
+  </div>
 
   <div class="gallery-wrap">
     <div class="left-image">
@@ -141,14 +148,14 @@
     </div>
 
     <div class="fixed-image">
-      <img src="/alfoze/images/2-romance/romance1.png" />
-      <img src="/alfoze/images/2-romance/romance2.png" />
-      <img src="/alfoze/images/2-romance/romance3.png" />
-      <img src="/alfoze/images/2-romance/romance4.png" />
-      <img src="/alfoze/images/2-romance/romance5.png" />
-      <img src="/alfoze/images/2-romance/romance6.png" />
-      <img src="/test/images/2-romance/romance8-1.gif" />
-      <img src="/alfoze/images/2-romance/romance7.png" />
+      <img src="/alfoze/images/2-romance/romance1.png" alt="romance1" />
+      <img src="/alfoze/images/2-romance/romance2.png" alt="romance2" />
+      <img src="/alfoze/images/2-romance/romance3.png" alt="romance3" />
+      <img src="/alfoze/images/2-romance/romance4.png" alt="romance4" />
+      <img src="/alfoze/images/2-romance/romance5.png" alt="romance5" />
+      <img src="/alfoze/images/2-romance/romance6.png" alt="romance6" />
+      <img src="/test/images/2-romance/romance8-1.gif" alt="romance7" />
+      <img src="/alfoze/images/2-romance/romance7.png" alt="romance8" />
     </div>
 
     <div class="scroll-area">
@@ -157,40 +164,48 @@
 
     <div class="slide-box active" id="slideBox">
       <div class="caption-group" id="captionBox"></div>
-      <div class="slide-list" id="listButton">info</div>
     </div>
-  </div>
-
-  <div class="header">
-    <img src="/alfoze/images/header.png" />
   </div>
 
   <div class="footer">
     <div class="right-link"><a href="/alfoze/">back</a></div>
+    <div id="listButton" onclick="toggleSlideBox()">close</div>
   </div>
 
   <div class="image-viewer" id="imageViewer">
-    <img src="" alt="" />
+    <img src="" alt="viewer image" />
   </div>
 
   <script>
     async function loadData() {
       const res = await fetch("../data.json");
       const data = await res.json();
-      const idx = parseInt(window.location.pathname.split("/").slice(-2)[0]);
+
+      const pathParts = window.location.pathname.split("/");
+      const idx = parseInt(pathParts[pathParts.length-2], 10);
       const item = data[idx-1];
       if (!item) return;
 
       const gallery = document.getElementById('gallery');
       gallery.innerHTML = "";
-      data.slice().reverse().forEach((d, rIdx) => {
-        const i = data.length - 1 - rIdx;
+      data.slice().reverse().forEach((d, revIdx) => {
+        const i = data.length - 1 - revIdx;
         const a = document.createElement('a');
         a.href = `/alfoze/${i+1}/`;
-        a.innerHTML = `<img src="/alfoze/images/thumb${i+1}.png"/>`;
+        a.className = 'thumbnail thumb' + (i+1);
+        a.innerHTML = `
+          <img src="/alfoze/images/thumb${i+1}.png" alt="썸네일${i+1}"/>
+          <div class="caption">
+            <span class="title">${d.title}</span>
+            <span class="category-year">
+              <span class="category">${d.category}</span>
+              <span class="year">${d.year}</span>
+            </span>
+          </div>`;
         gallery.appendChild(a);
       });
 
+      const captionBox = document.getElementById("captionBox");
       captionBox.innerHTML = `
         <div class="caption1">${item.title}</div>
         <div class="caption2">${item.year}, ${item.category}</div>
@@ -200,10 +215,31 @@
       `;
     }
 
+    function toggleSlideBox() {
+      const sb = document.getElementById('slideBox');
+      const txt = document.getElementById('slideToggleText');
+      sb.classList.toggle('active');
+      txt.textContent = sb.classList.contains('active') ? 'close' : 'list';
+      document.getElementById('listButton').textContent = txt.textContent;
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       loadData();
+      const viewer = document.getElementById("imageViewer");
+      const viewerImg = viewer.querySelector("img");
+
+      document.querySelectorAll(".fixed-image img").forEach(img => {
+        img.addEventListener("click", () => {
+          viewerImg.src = img.src;
+          viewer.classList.add("active");
+        });
+      });
+
+      viewer.addEventListener("click", () => viewer.classList.remove("active"));
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") viewer.classList.remove("active");
+      });
     });
   </script>
-
 </body>
 </html>
