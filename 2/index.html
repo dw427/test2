@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>39a generation that has lost romance</title>
+  <title>40a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -108,37 +108,37 @@
       .slide-box.active { transform: translateX(0) !important; }
     }
 
-    /* 웹형: 픽셀 단위로 조정, 1px 여백 제거 */
+    /* 웹형: 반응형 유지 + 1px 여백 제거 */
     @media (min-width: 769px) {
       html, body { width: 100%; height: 100%; overflow: hidden; }
 
       .gallery-wrap {
         display: grid;
         height: 100%;
-        grid-template-columns: 373px 500px 265px 373px; /* 픽셀 단위 */
+        grid-template-columns: 24.68% 33.10% 17.55% 24.68%; /* 비율 유지 */
         gap: 0;
       }
 
-      .left-image { width: 373px; height: 100%; overflow: hidden; }
+      .left-image { width: 100%; height: 100%; overflow: hidden; }
       .fixed-image {
-        width: 500px; height: 100%;
+        width: 100%;
+        height: 100%;
         overflow-y: auto;
-        position: relative;
         box-sizing: border-box;
         border-left: 1px solid #9fa0a0;
         border-right: 1px solid #9fa0a0;
         margin: 0; padding: 0;
       }
       .scroll-area {
-        width: 265px; height: 100%;
+        width: 100%;
+        height: 100%;
         overflow-y: auto;
-        position: relative;
         box-sizing: border-box;
         border-right: 1px solid #9fa0a0;
         margin: 0; padding: 0;
       }
 
-      .slide-box { width: 373px; height: 100%; overflow-y: auto; position: relative; transform: none !important; }
+      .slide-box { width: 100%; height: 100%; overflow-y: auto; position: relative; transform: none !important; }
       .left-image img { width: 100%; height: 100%; object-fit: cover; }
       .fixed-image img { width: 100%; height: auto; cursor: pointer; }
       .thumbnail { margin-bottom: 8px; }
