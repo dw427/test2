@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3a generation that has lost romance</title>
+  <title>4a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
   <style>
     @import url("https://use.typekit.net/zuk4pzv.css");
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { width: 100%; height: 100%; } /* 안전하게 전체 높이 고정 */
     body { font-family: "minion-pro", serif; background: #fff; }
 
     a { color: inherit; text-decoration: none; transition: color .3s; }
@@ -32,7 +31,7 @@
 
     .slide-box {
       position: fixed; top: 0; right: 0;
-      width: 373px !important; max-width: 100%; height: 100%;
+      width: 373px; max-width: 100%; height: 100%;
       background: #fff; z-index: 3000;
       transform: translateX(100%); transition: transform .3s;
       overflow-y: auto;
@@ -52,96 +51,62 @@
     }
     .slide-box .slide-list:hover { color: #7a7a7a; }
 
-    .caption-group {
-      display: flex; flex-direction: column; font-size: 12px;
-    }
+    .caption-group { display: flex; flex-direction: column; font-size: 12px; }
     .caption1 { font-size: 20px; margin-bottom: 3px; }
     .caption2 { font-size: 12px; margin-bottom: 20px; }
-    .caption3 { font-size: 12px; margin-bottom: 3px; }
-    .caption4 { font-size: 12px; margin-bottom: 3px; }
-    .caption5 { font-size: 12px; }
+    .caption3, .caption4, .caption5 { font-size: 12px; margin-bottom: 3px; }
 
-    .text-group {
-      display: flex; align-items: center;
-      font-size: 12px; padding: 10px 0; white-space: nowrap;
-    }
+    .text-group { display: flex; align-items: center; font-size: 12px; padding: 10px 0; white-space: nowrap; }
     .text1 { margin-left: 10px; }
     .text2 { margin-left: auto; margin-right: 60px; text-align: right; }
     .text3 { margin-right: 10px; flex-shrink: 0; }
 
-    .content {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0;
-    }
-    .thumbnail {
-      display: flex; flex-direction: column; color: inherit;
-    }
-    .thumbnail img {
-      width: 100%; height: auto; object-fit: cover; display: block;
-      cursor: pointer;
-    }
-    .caption {
-      display: flex; flex-direction: column;
-      margin-top: 8px; font-size: 12px;
-      align-items: flex-start;
-    }
+    .content { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+    .thumbnail { display: flex; flex-direction: column; color: inherit; }
+    .thumbnail img { width: 100%; height: auto; object-fit: cover; display: block; cursor: pointer; }
+    .caption { display: flex; flex-direction: column; margin-top: 8px; font-size: 12px; align-items: flex-start; }
     .caption .title { margin-bottom: 0; }
-    .caption .category-year {
-      display: flex; align-items: center;
-    }
+    .caption .category-year { display: flex; align-items: center; }
     .caption .category { margin-right: 10px; }
 
     ::-webkit-scrollbar { display: none; }
     .scroll-area, .fixed-image { scrollbar-width: none; -ms-overflow-style: none; }
-
     .header { display: none; }
 
     .image-viewer {
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
       background: rgba(0,0,0,0.85);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .3s ease;
+      display: flex; justify-content: center; align-items: center;
+      opacity: 0; visibility: hidden; transition: opacity .3s ease;
       z-index: 5000;
     }
-    .image-viewer.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    .image-viewer img {
-      max-width: 90%;
-      max-height: 90%;
-      object-fit: contain;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
+    .image-viewer.active { opacity: 1; visibility: visible; }
+    .image-viewer img { max-width: 90%; max-height: 90%; object-fit: contain; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
     .image-viewer::after {
       content: '×';
-      position: fixed;
-      top: 20px;
-      right: 30px;
-      font-size: 28px;
-      color: #fff;
-      cursor: pointer;
-      font-family: sans-serif;
+      position: fixed; top: 20px; right: 30px;
+      font-size: 28px; color: #fff; cursor: pointer; font-family: sans-serif;
     }
+
+    /* ---------------- 웹형 수정 영역 ---------------- */
+    @media (min-width: 769px) and (max-width: 1200px) {
+      .left-image { width: 25%; }       /* 축소 비율 적용 */
+      .slide-box { width: 25%; }        /* 토글 영역도 축소 */
+    }
+
+    @media (min-width: 1201px) and (max-width: 1600px) {
+      .left-image { width: 20%; }
+      .slide-box { width: 20%; }
+    }
+    /* scroll-image와 fixed-image는 그대로 유지 */
+    /* ------------------------------------------------ */
 
     @media (max-width: 768px) {
       .gallery-wrap { display: block; }
       .left-image { display: none; }
       .fixed-image {
-        width: 100%;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border-left: none;
-        border-right: none;
+        width: 100%; padding: 0; display: flex; flex-direction: column; align-items: center; border-left: none; border-right: none;
       }
       .fixed-image img { width: 100%; height: auto; display: block; }
       .scroll-area { display: none; }
@@ -150,95 +115,26 @@
       .footer #listButton { bottom: 20px; right: 20px; }
       .slide-box { width: 100% !important; padding: 40px 20px; }
       .slide-box .slide-list { bottom: 20px; right: 20px; }
-      .header {
-        width: 100%; height: 60px; background: #ffffff;
-        display: flex; align-items: center; justify-content: center;
-        position: sticky; top: 0; z-index: 1000;
-      }
+      .header { width: 100%; height: 60px; background: #ffffff; display: flex; align-items: center; justify-content: center; position: sticky; top: 0; z-index: 1000; }
       .header img { height: 100%; width: auto; }
     }
 
-    /* === 웹형(데스크탑) 수정영역: left-image, fixed-image, scroll-area, slide-box가 반응하도록 변경 === */
     @media (min-width: 769px) {
       html, body { width: 100%; height: 100%; overflow: hidden; }
-      .gallery-wrap { display: flex; height: 100%; align-items: stretch; }
-
-      /* left-image가 viewport에 따라 자연스럽게 줄어들게 (최소 너비 보장) */
-      .left-image {
-        flex: 0 0 18vw; /* 기본 18% */
-        min-width: 220px;
-        max-width: 380px;
-        height: 100%;
-      }
-      .left-image img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      /* fixed-image는 가운데 콘텐츠 영역: 비율로 반응 + 최소 너비 */
-      .fixed-image {
-        flex: 0 0 50vw; /* 기본 50% */
-        min-width: 340px;
-        max-width: 820px;
-        height: 100%;
-        overflow-y: auto;
-        padding-bottom: 0;
-        border-left: 1px solid #9fa0a0;
-        border-right: 1px solid #9fa0a0;
-      }
-      .fixed-image img {
-        display: block;
-        width: 100%;
-        height: auto;
-        max-height: none;
-        cursor: pointer;
-        object-fit: cover;
-      }
-
-      /* scroll-area (썸네일 열)도 비율로 반응 */
-      .scroll-area {
-        flex: 0 0 18vw; /* 기본 18% */
-        min-width: 200px;
-        max-width: 300px;
-        height: 100vh;
-        overflow-y: auto;
-        border-right: 1px solid #9fa0a0;
-      }
+      .gallery-wrap { display: flex; height: 100%; }
+      .left-image { flex-shrink: 0; width: 373px; height: 100%; }
+      .left-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+      .fixed-image { width: 500px; height: 100%; overflow-y: scroll; padding-bottom: 0; border-left: 1px solid #9fa0a0; border-right: 1px solid #9fa0a0; }
+      .fixed-image img { width: 100%; height: auto; display: block; cursor: pointer; }
+      .scroll-area { width: 265px; height: 100vh; overflow-y: scroll; border-right: 1px solid #9fa0a0; }
       .thumbnail { margin-bottom: 8px; }
-
-      /* slide-box(토글)도 데스크탑에서 비율로 줄어들도록 override */
-      .slide-box {
-        width: 20vw !important;
-        min-width: 230px;
-        max-width: 380px;
-        right: 0;
-      }
-
-      /* slide-box 내부의 fixed-positioned .slide-list 위치 보정 (데스크탑) */
-      .slide-box .slide-list {
-        right: calc(20vw + 10px);
-        bottom: 10px;
-      }
     }
 
-    /* 🔥 모바일은 기본 닫힘 (원본 유지) */
     @media (max-width: 768px) {
       .slide-box { transform: translateX(100%) !important; }
       .slide-box.active { transform: translateX(0) !important; }
     }
 
-    /* 안전 보정: 이미지는 부모 넘치지 않게 */
-    .fixed-image img,
-    .left-image img,
-    .thumbnail img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      max-width: 100%;
-    }
   </style>
 </head>
 
@@ -275,7 +171,6 @@
     <div id="listButton" onclick="toggleSlideBox()">close</div>
   </div>
 
-  <!-- 🔥 active 추가 (웹형 로딩 애니메이션 제거) -->
   <div class="slide-box active" id="slideBox">
     <div class="slide-list" id="slideToggleText" onclick="toggleSlideBox()">close</div>
     <div class="caption-group" id="captionBox"></div>
@@ -334,7 +229,6 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       loadData();
-
       const viewer = document.getElementById("imageViewer");
       const viewerImg = viewer.querySelector("img");
 
