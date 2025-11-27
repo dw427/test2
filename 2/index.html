@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>17a generation that has lost romance</title>
+<title>18a generation that has lost romance</title>
 <link rel="icon" type="image/png" href="/alfoze/images/fav.png">
 <link rel="apple-touch-icon" href="/alfoze/images/fav.png">
 <meta name="theme-color" content="#ffffff">
@@ -19,18 +19,13 @@ a:hover { color:#a3a3a3; }
 .header { display:none; }
 
 .gallery-wrap { display:flex; width:100%; height:100vh; }
-
 .left-image, .fixed-image, .scroll-area, .slide-box { height:100%; }
+.left-image img, .fixed-image img { width:100%; height:auto; display:block; object-fit:contain; margin-bottom:5px; }
 
-.left-image img { width:100%; height:100%; object-fit:contain; display:block; }
-.fixed-image img { width:100%; object-fit:contain; display:block; margin-bottom:5px; }
-
-.left-image, .slide-box { width: calc((100% - 500px - 265px)/2); flex-shrink:0; }
-.fixed-image { width:500px; flex-shrink:0; overflow-y:scroll; border-left:1px solid #9fa0a0; border-right:1px solid #9fa0a0; }
-.scroll-area { width:265px; flex-shrink:0; overflow-y:scroll; border-right:1px solid #9fa0a0; }
-
-.content { display:grid; grid-template-columns:repeat(2,1fr); gap:0; }
-.thumbnail { display:flex; flex-direction:column; }
+.left-image { flex:1; min-width:150px; }
+.fixed-image { width:500px; overflow-y:auto; border-left:1px solid #9fa0a0; border-right:1px solid #9fa0a0; flex-shrink:0; }
+.scroll-area { width:265px; overflow-y:auto; border-right:1px solid #9fa0a0; flex-shrink:0; }
+.scroll-area .content { display:grid; grid-template-columns:repeat(2,1fr); gap:0; }
 .thumbnail img { width:100%; height:auto; object-fit:cover; cursor:pointer; }
 .caption { display:flex; flex-direction:column; margin-top:8px; font-size:12px; align-items:flex-start; }
 .caption .title { margin-bottom:0; }
