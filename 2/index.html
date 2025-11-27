@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>21a generation that has lost romance</title>
+  <title>22a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -15,43 +15,17 @@
     a { color: inherit; text-decoration: none; transition: color .3s; }
     a:hover { color: #a3a3a3; }
 
-    .footer {
-      position: fixed; bottom: 0; left: 0;
-      width: 100%; height: 100px; background: transparent;
-      z-index: 1000;
-      color: #a3a3a3;
-    }
-    .footer .right-link,
-    .footer #listButton {
-      position: absolute; bottom: 10px; font-size: 12px;
-    }
-    .footer .right-link { left: 30px; }
-    .footer #listButton { right: 30px; cursor: pointer; }
-    .footer #listButton:hover { color: #7a7a7a; }
+    ::-webkit-scrollbar { display: none; }
+    .scroll-area, .fixed-image { scrollbar-width: none; -ms-overflow-style: none; }
 
-    .slide-box {
-      background: #fff;
-      padding: 10px;
-      overflow-y: auto;
-    }
-    .slide-box .slide-list { font-size: 12px; cursor: pointer; transition: color .3s; color: #a3a3a3; }
+    .header { display: none; }
 
     .caption-group {
       display: flex; flex-direction: column; font-size: 12px;
     }
     .caption1 { font-size: 20px; margin-bottom: 3px; }
     .caption2 { font-size: 12px; margin-bottom: 20px; }
-    .caption3 { font-size: 12px; margin-bottom: 3px; }
-    .caption4 { font-size: 12px; margin-bottom: 3px; }
-    .caption5 { font-size: 12px; }
-
-    .text-group {
-      display: flex; align-items: center;
-      font-size: 12px; padding: 10px 0; white-space: nowrap;
-    }
-    .text1 { margin-left: 10px; }
-    .text2 { margin-left: auto; margin-right: 60px; text-align: right; }
-    .text3 { margin-right: 10px; flex-shrink: 0; }
+    .caption3, .caption4, .caption5 { font-size: 12px; margin-bottom: 3px; }
 
     .content {
       display: grid;
@@ -76,11 +50,7 @@
     }
     .caption .category { margin-right: 10px; }
 
-    ::-webkit-scrollbar { display: none; }
-    .scroll-area, .fixed-image { scrollbar-width: none; -ms-overflow-style: none; }
-
-    .header { display: none; }
-
+    /* 📌 image viewer */
     .image-viewer {
       position: fixed;
       top: 0; left: 0;
@@ -107,14 +77,79 @@
     .image-viewer::after {
       content: '×';
       position: fixed;
-      top: 20px;
-      right: 30px;
-      font-size: 28px;
-      color: #fff;
+      top: 20px; right: 30px;
+      font-size: 28px; color: #fff;
       cursor: pointer;
       font-family: sans-serif;
     }
 
+    /* 🔥 웹형(Desktop) — 요청한 4단 고정 레이아웃 */
+    @media (min-width: 769px) {
+      html, body { width: 100%; height: 100%; overflow: hidden; }
+
+      .gallery-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr; /* left | fixed | scroll | caption */
+        width: 100%;
+        height: 100vh;
+      }
+
+      .left-image {
+        width: 100%;
+        height: 100%;
+      }
+      .left-image img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+      }
+
+      .fixed-image {
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        border-left: 1px solid #9fa0a0;
+        border-right: 1px solid #9fa0a0;
+      }
+      .fixed-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        cursor: pointer;
+      }
+
+      .scroll-area {
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        border-right: 1px solid #9fa0a0;
+      }
+
+      /* 📌 토글 박스 → 고정 캡션 박스로 변경 */
+      .slide-box {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform: none !important;
+        border-right: 1px solid #9fa0a0;
+        padding: 20px;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+
+      /* 웹에서는 토글 버튼/close 숨김 */
+      #listButton,
+      #slideToggleText {
+        display: none !important;
+      }
+
+      .footer {
+        display: none !important;
+      }
+    }
+
+    /* 🔥 모바일 그대로 (절대 수정 X) */
     @media (max-width: 768px) {
       .gallery-wrap { display: block; }
       .left-image { display: none; }
@@ -140,24 +175,8 @@
         position: sticky; top: 0; z-index: 1000;
       }
       .header img { height: 100%; width: auto; }
-    }
-
-    /* 🔥 웹형 4단 그리드 */
-    @media (min-width: 769px) {
-      html, body { width: 100%; height: 100%; overflow: hidden; }
-      .gallery-wrap {
-        display: grid;
-        grid-template-columns: 1fr 500px 265px 1fr; /* left / fixed / scroll / slide */
-        width: 1080px; height: 1920px;
-        margin: 0 auto;
-      }
-      .left-image { width: 100%; height: 100%; }
-      .left-image img { width: 100%; height: 100%; object-fit: cover; }
-      .fixed-image { width: 100%; height: 100%; overflow-y: auto; padding-bottom: 0; border-left: 1px solid #9fa0a0; border-right: 1px solid #9fa0a0; }
-      .fixed-image img { width: 100%; height: auto; cursor: pointer; display: block; }
-      .scroll-area { width: 100%; height: 100%; overflow-y: auto; border-right: 1px solid #9fa0a0; }
-      .slide-box { position: relative; transform: none !important; width: 100%; height: 100%; background: #fff; padding: 10px; overflow-y: auto; }
-      .slide-box .slide-list { display: none; }
+      .slide-box { transform: translateX(100%) !important; }
+      .slide-box.active { transform: translateX(0) !important; }
     }
   </style>
 </head>
@@ -189,16 +208,18 @@
       <div class="content" id="gallery"></div>
     </div>
 
-    <div class="slide-box active" id="slideBox">
+    <!-- ⚠️ active 제거, 웹형에서는 고정 캡션박스 -->
+    <div class="slide-box" id="slideBox">
+      <div class="slide-list" id="slideToggleText">close</div>
       <div class="caption-group" id="captionBox"></div>
     </div>
   </div>
 
   <div class="footer">
     <div class="right-link"><a href="/alfoze/">back</a></div>
-    <div id="listButton">close</div>
+    <div id="listButton" onclick="toggleSlideBox()">close</div>
   </div>
-  
+
   <div class="image-viewer" id="imageViewer">
     <img src="" alt="viewer image" />
   </div>
@@ -207,9 +228,10 @@
     async function loadData() {
       const res = await fetch("../data.json");
       const data = await res.json();
+
       const pathParts = window.location.pathname.split("/");
-      const idx = parseInt(pathParts[pathParts.length-2], 10);
-      const item = data[idx-1];
+      const idx = parseInt(pathParts[pathParts.length - 2], 10);
+      const item = data[idx - 1];
       if (!item) return;
 
       const gallery = document.getElementById('gallery');
@@ -241,9 +263,16 @@
       `;
     }
 
+    function toggleSlideBox() {
+      const sb = document.getElementById('slideBox');
+      const txt = document.getElementById('slideToggleText');
+      sb.classList.toggle('active');
+      txt.textContent = sb.classList.contains('active') ? 'close' : 'list';
+      document.getElementById('listButton').textContent = txt.textContent;
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       loadData();
-
       const viewer = document.getElementById("imageViewer");
       const viewerImg = viewer.querySelector("img");
 
