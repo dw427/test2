@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1a generation that has lost romance</title>
+  <title>2a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
   <style>
     @import url("https://use.typekit.net/zuk4pzv.css");
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+
     body { font-family: "minion-pro", serif; background: #fff; }
 
     a { color: inherit; text-decoration: none; transition: color .3s; }
@@ -130,7 +132,6 @@
       font-family: sans-serif;
     }
 
-    /* 🔥 모바일은 기본 닫힘 (건드리지 않음) */
     @media (max-width: 768px) {
       .gallery-wrap { display: block; }
       .left-image { display: none; }
@@ -158,16 +159,13 @@
       .header img { height: 100%; width: auto; }
     }
 
-    /* 🔥 웹형만 수정 완료 */
     @media (min-width: 769px) {
       html, body { width: 100%; height: 100%; overflow: hidden; }
       .gallery-wrap { display: flex; height: 100%; }
 
-      /* 🔥 left-image도 화면 줄어들면 줄어들게 */
       .left-image {
-        flex-shrink: 1;
-        width: 25vw;
-        min-width: 230px;
+        flex-shrink: 0;
+        width: 373px;
         height: 100%;
       }
       .left-image img {
@@ -177,44 +175,46 @@
         object-fit: cover;
       }
 
-      /* 🔥 fixed-image 유지 + 반응 (원본 구조 그대로) */
       .fixed-image {
-        width: 40vw;
-        min-width: 350px;
+        width: 500px;
         height: 100%;
         overflow-y: scroll;
         padding-bottom: 0;
         border-left: 1px solid #9fa0a0;
         border-right: 1px solid #9fa0a0;
       }
-      .fixed-image img { width: 100%; height: auto; display: block; cursor: pointer; }
 
-      /* 🔥 scroll-area도 함께 비율 반응 */
+      .fixed-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        cursor: pointer;
+      }
+
       .scroll-area {
-        width: 20vw;
-        min-width: 200px;
+        width: 265px;
         height: 100vh;
         overflow-y: scroll;
         border-right: 1px solid #9fa0a0;
       }
       .thumbnail { margin-bottom: 8px; }
-
-      /* 🔥 slide-box (토글 박스) 비율로 줄어듦 */
-      .slide-box {
-        width: 25vw !important;
-        min-width: 230px;
-      }
     }
 
-    /* 모바일 기본 닫힘 */
     @media (max-width: 768px) {
       .slide-box { transform: translateX(100%) !important; }
       .slide-box.active { transform: translateX(0) !important; }
+    }
+
+    /* 🔥 이미지 높이 보정 */
+    .fixed-image img,
+    .left-image img {
+      object-fit: cover;
     }
   </style>
 </head>
 
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+
   <div class="header">
     <a href="/alfoze/" style="display:block; height:100%;">
       <img src="/alfoze/images/header.png" alt="header" />
@@ -247,7 +247,6 @@
     <div id="listButton" onclick="toggleSlideBox()">close</div>
   </div>
 
-  <!-- 🔥 active 유지 -->
   <div class="slide-box active" id="slideBox">
     <div class="slide-list" id="slideToggleText" onclick="toggleSlideBox()">close</div>
     <div class="caption-group" id="captionBox"></div>
