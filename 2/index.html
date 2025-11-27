@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>10a generation that has lost romance</title>
+  <title>11a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -19,16 +19,12 @@
       width: 100%; height: 100px; background: transparent;
       z-index: 1000; color: #a3a3a3;
     }
-    .footer .right-link, .footer #listButton {
-      position: absolute; bottom: 10px; font-size: 12px;
-    }
-    .footer .right-link { left: 30px; }
-    .footer #listButton { right: 30px; cursor: pointer; }
-    .footer #listButton:hover { color: #7a7a7a; }
+    .footer .right-link { position: absolute; bottom: 10px; left: 30px; font-size: 12px; }
 
     ::-webkit-scrollbar { display: none; }
     .scroll-area, .fixed-image { scrollbar-width: none; -ms-overflow-style: none; }
 
+    /* 📌 모바일에서 헤더 필요 */
     .header { display: none; }
 
     .image-viewer {
@@ -47,29 +43,19 @@
       object-fit: contain;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
-    .image-viewer::after {
-      content: '×';
-      position: fixed; top: 20px; right: 30px;
-      font-size: 28px; color: #fff; cursor: pointer;
-      font-family: sans-serif;
-    }
 
     /* ======================
-        📌 PC 웹 전용 레이아웃
+        📌 PC 웹
+        모바일 UI 유지 + PC에서는 토글 비활성 + 항상 노출
     =======================*/
     @media (min-width: 769px) {
+
       html, body { width: 100%; height: 100%; overflow: hidden; }
 
       .gallery-wrap {
         display: grid;
-        grid-template-columns: 1fr 500px 265px 1fr;
+        grid-template-columns: 373px 500px 265px 373px;
         width: 100%; height: 100vh;
-      }
-
-      .left-image, .slide-box {
-        width: 100%; height: 100%;
-        min-width: 200px;
-        overflow: hidden;
       }
 
       .left-image img {
@@ -90,70 +76,64 @@
       }
 
       .scroll-area {
-        width: 265px; height: 100vh;
+        width: 265px; height: 100%;
         overflow-y: scroll;
         border-right: 1px solid #9fa0a0;
       }
 
-      /* 📌 slide-box (토글 제거, 항상 표시) */
+      /* 📌 scroll image 확대 방지 */
+      .scroll-area img {          /* ← 📌 수정 */
+        width: 100%;
+        height: auto;
+        max-width: none;         /* 확대 금지 */
+        object-fit: contain;
+      }
+
+      /* 📌 토글 기능 OFF + 항상 열림 + 디자인 그대로 유지 */
       .slide-box {
+        transform: none !important;         /* 강제 열림 */
         position: static !important;
-        transform: none !important;
-        background: #fff;
-        z-index: 3000;
-        overflow-y: auto;
-        padding: 20px 20px;
-        display: flex; align-items: center; justify-content: center;
+        width: 100% !important;
       }
+      .slide-list { display: none !important; } /* 버튼 숨김 */
 
-      /* 숨겨졌던 text 복구 */
-      .slide-list, #listButton { display: none !important; }
-
-      .caption-group {
-        font-size: 12px;
-        display: flex; flex-direction: column;
-        text-align: center;
-      }
+      .caption-group { font-size: 12px; text-align: center; }
       .caption1 { font-size: 20px; margin-bottom: 5px; }
       .caption2 { margin-bottom: 15px; }
       .caption3, .caption4, .caption5 { margin-bottom: 4px; }
+
+      /* 📌 PC에서는 헤더 없음 그대로 유지 */
+      .header { display: none !important; }
     }
 
     /* =====================
-        📌 모바일 절대 수정 X
+        📌 모바일 원본 유지
     ======================*/
     @media (max-width: 768px) {
       .gallery-wrap { display: block; }
       .left-image { display: none; }
-      .fixed-image { width: 100%; padding: 0; display: flex;
-        flex-direction: column; align-items: center;
-        border-left: none; border-right: none; }
+      .fixed-image { width: 100%; border-left: none; border-right: none; }
       .fixed-image img { width: 100%; height: auto; }
       .scroll-area { display: none; }
-      .footer { height: 100px; }
+
       .header {
         width: 100%; height: 60px; background: #ffffff;
         display: flex; align-items: center; justify-content: center;
         position: sticky; top: 0; z-index: 1000;
       }
-      .header img { height: 100%; width: auto; }
+
+      /* 📌 모바일 토글형 유지 */
       .slide-box {
         width: 100% !important;
         padding: 40px 20px;
         transform: translateX(100%);
+        transition: transform .3s;
       }
       .slide-box.active { transform: translateX(0); }
-      .slide-box .slide-list {
-        bottom: 20px; right: 20px;
-        font-size: 12px; cursor: pointer;
-        color: #a3a3a3;
-      }
-      .slide-box .slide-list:hover { color: #7a7a7a; }
     }
   </style>
 </head>
-
-<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<body>
 
   <div class="gallery-wrap">
     <div class="left-image">
@@ -161,24 +141,28 @@
     </div>
 
     <div class="fixed-image">
-      <img src="/alfoze/images/2-romance/romance1.png" alt="romance1" />
-      <img src="/alfoze/images/2-romance/romance2.png" alt="romance2" />
-      <img src="/alfoze/images/2-romance/romance3.png" alt="romance3" />
-      <img src="/alfoze/images/2-romance/romance4.png" alt="romance4" />
-      <img src="/alfoze/images/2-romance/romance5.png" alt="romance5" />
-      <img src="/alfoze/images/2-romance/romance6.png" alt="romance6" />
-      <img src="/test/images/2-romance/romance8-1.gif" alt="romance7" />
-      <img src="/alfoze/images/2-romance/romance7.png" alt="romance8" />
+      <img src="/alfoze/images/2-romance/romance1.png" />
+      <img src="/alfoze/images/2-romance/romance2.png" />
+      <img src="/alfoze/images/2-romance/romance3.png" />
+      <img src="/alfoze/images/2-romance/romance4.png" />
+      <img src="/alfoze/images/2-romance/romance5.png" />
+      <img src="/alfoze/images/2-romance/romance6.png" />
+      <img src="/test/images/2-romance/romance8-1.gif" />
+      <img src="/alfoze/images/2-romance/romance7.png" />
     </div>
 
     <div class="scroll-area">
       <div class="content" id="gallery"></div>
     </div>
 
-    <!-- 📌 항상 보이는 PC 캡션 영역 -->
     <div class="slide-box active" id="slideBox">
       <div class="caption-group" id="captionBox"></div>
+      <div class="slide-list" id="listButton">info</div>
     </div>
+  </div>
+
+  <div class="header">
+    <img src="/alfoze/images/header.png" />
   </div>
 
   <div class="footer">
@@ -186,38 +170,27 @@
   </div>
 
   <div class="image-viewer" id="imageViewer">
-    <img src="" alt="viewer image" />
+    <img src="" alt="" />
   </div>
 
   <script>
     async function loadData() {
       const res = await fetch("../data.json");
       const data = await res.json();
-      const pathParts = window.location.pathname.split("/");
-      const idx = parseInt(pathParts[pathParts.length-2], 10);
+      const idx = parseInt(window.location.pathname.split("/").slice(-2)[0]);
       const item = data[idx-1];
       if (!item) return;
 
       const gallery = document.getElementById('gallery');
       gallery.innerHTML = "";
-      data.slice().reverse().forEach((d, revIdx) => {
-        const i = data.length - 1 - revIdx;
+      data.slice().reverse().forEach((d, rIdx) => {
+        const i = data.length - 1 - rIdx;
         const a = document.createElement('a');
         a.href = `/alfoze/${i+1}/`;
-        a.className = 'thumbnail thumb' + (i+1);
-        a.innerHTML = `
-          <img src="/alfoze/images/thumb${i+1}.png" alt="썸네일${i+1}"/>
-          <div class="caption">
-            <span class="title">${d.title}</span>
-            <span class="category-year">
-              <span class="category">${d.category}</span>
-              <span class="year">${d.year}</span>
-            </span>
-          </div>`;
+        a.innerHTML = `<img src="/alfoze/images/thumb${i+1}.png"/>`;
         gallery.appendChild(a);
       });
 
-      const captionBox = document.getElementById("captionBox");
       captionBox.innerHTML = `
         <div class="caption1">${item.title}</div>
         <div class="caption2">${item.year}, ${item.category}</div>
@@ -229,21 +202,6 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       loadData();
-
-      const viewer = document.getElementById("imageViewer");
-      const viewerImg = viewer.querySelector("img");
-
-      document.querySelectorAll(".fixed-image img").forEach(img => {
-        img.addEventListener("click", () => {
-          viewerImg.src = img.src;
-          viewer.classList.add("active");
-        });
-      });
-
-      viewer.addEventListener("click", () => viewer.classList.remove("active"));
-      document.addEventListener("keydown", e => {
-        if (e.key === "Escape") viewer.classList.remove("active");
-      });
     });
   </script>
 
