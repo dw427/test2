@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>31a generation that has lost romance</title>
+  <title>32a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -90,7 +90,7 @@
       font-size: 28px; color: #fff; cursor: pointer; font-family: sans-serif;
     }
 
-    /* 모바일 유지 */
+    /* 반응형 */
     @media (max-width: 768px) {
       .gallery-wrap { display: block; }
       .left-image { display: none; }
@@ -116,10 +116,15 @@
         display: grid;
         height: 100%;
         grid-template-columns: 24.68% 33.10% 17.55% 24.68%;
-        gap: 0; /* 컬럼 간격 제거 */
+        gap: 0;
       }
 
-      .left-image { max-width: 373px; height: 100%; overflow: hidden; }
+      .left-image { 
+        max-width: 373px; 
+        height: 100%; 
+        overflow: hidden;
+        margin-right: 1px; /* 1px 우측 이동 적용 */
+      }
       .fixed-image {
         max-width: 500px; height: 100%;
         overflow-y: auto;
