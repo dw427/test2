@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>20a generation that has lost romance</title>
+  <title>21a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -30,11 +30,11 @@
     .footer #listButton:hover { color: #7a7a7a; }
 
     .slide-box {
-      background: #fff; 
-      color: #000;
+      background: #fff;
       padding: 10px;
       overflow-y: auto;
     }
+    .slide-box .slide-list { font-size: 12px; cursor: pointer; transition: color .3s; color: #a3a3a3; }
 
     .caption-group {
       display: flex; flex-direction: column; font-size: 12px;
@@ -44,6 +44,14 @@
     .caption3 { font-size: 12px; margin-bottom: 3px; }
     .caption4 { font-size: 12px; margin-bottom: 3px; }
     .caption5 { font-size: 12px; }
+
+    .text-group {
+      display: flex; align-items: center;
+      font-size: 12px; padding: 10px 0; white-space: nowrap;
+    }
+    .text1 { margin-left: 10px; }
+    .text2 { margin-left: auto; margin-right: 60px; text-align: right; }
+    .text3 { margin-right: 10px; flex-shrink: 0; }
 
     .content {
       display: grid;
@@ -107,7 +115,6 @@
       font-family: sans-serif;
     }
 
-    /* 🔥 모바일 반응형 */
     @media (max-width: 768px) {
       .gallery-wrap { display: block; }
       .left-image { display: none; }
@@ -125,8 +132,8 @@
       .footer { height: 100px; }
       .footer .right-link { bottom: 20px; left: 20px; }
       .footer #listButton { bottom: 20px; right: 20px; }
-      .slide-box { width: 100% !important; padding: 40px 20px; transform: translateX(100%) !important; }
-      .slide-box.active { transform: translateX(0) !important; }
+      .slide-box { width: 100% !important; padding: 40px 20px; }
+      .slide-box .slide-list { bottom: 20px; right: 20px; }
       .header {
         width: 100%; height: 60px; background: #ffffff;
         display: flex; align-items: center; justify-content: center;
@@ -137,50 +144,20 @@
 
     /* 🔥 웹형 4단 그리드 */
     @media (min-width: 769px) {
-      html, body {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-      }
-
+      html, body { width: 100%; height: 100%; overflow: hidden; }
       .gallery-wrap {
         display: grid;
-        grid-template-columns: 373px 500px 265px 373px; /* left | fixed | scroll | toggle */
-        grid-template-rows: 100%;
-        height: 100%;
+        grid-template-columns: 1fr 500px 265px 1fr; /* left / fixed / scroll / slide */
+        width: 1080px; height: 1920px;
+        margin: 0 auto;
       }
-
-      .left-image, .fixed-image, .scroll-area, .slide-box {
-        height: 100%;
-      }
-
-      .left-image img, .fixed-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .fixed-image {
-        overflow-y: auto;
-        padding-bottom: 0;
-        border-left: 1px solid #9fa0a0;
-        border-right: 1px solid #9fa0a0;
-      }
-
-      .scroll-area {
-        overflow-y: scroll;
-        border-right: 1px solid #9fa0a0;
-      }
-
-      .slide-box {
-        position: relative;
-        transform: none !important; /* 고정 토글 영역 */
-        border-left: 1px solid #9fa0a0;
-      }
-
-      .slide-box .slide-list {
-        display: none; /* 웹형은 close 버튼 제거 */
-      }
+      .left-image { width: 100%; height: 100%; }
+      .left-image img { width: 100%; height: 100%; object-fit: cover; }
+      .fixed-image { width: 100%; height: 100%; overflow-y: auto; padding-bottom: 0; border-left: 1px solid #9fa0a0; border-right: 1px solid #9fa0a0; }
+      .fixed-image img { width: 100%; height: auto; cursor: pointer; display: block; }
+      .scroll-area { width: 100%; height: 100%; overflow-y: auto; border-right: 1px solid #9fa0a0; }
+      .slide-box { position: relative; transform: none !important; width: 100%; height: 100%; background: #fff; padding: 10px; overflow-y: auto; }
+      .slide-box .slide-list { display: none; }
     }
   </style>
 </head>
@@ -219,9 +196,9 @@
 
   <div class="footer">
     <div class="right-link"><a href="/alfoze/">back</a></div>
-    <div id="listButton" onclick="toggleSlideBox()">close</div>
+    <div id="listButton">close</div>
   </div>
-
+  
   <div class="image-viewer" id="imageViewer">
     <img src="" alt="viewer image" />
   </div>
@@ -230,7 +207,6 @@
     async function loadData() {
       const res = await fetch("../data.json");
       const data = await res.json();
-
       const pathParts = window.location.pathname.split("/");
       const idx = parseInt(pathParts[pathParts.length-2], 10);
       const item = data[idx-1];
@@ -263,14 +239,6 @@
         <div class="caption4">2023 graduation exhibition</div>
         <div class="caption5">package, book, poster, postcard, cd</div>
       `;
-    }
-
-    function toggleSlideBox() {
-      const sb = document.getElementById('slideBox');
-      const txt = document.getElementById('slideToggleText');
-      sb.classList.toggle('active');
-      txt.textContent = sb.classList.contains('active') ? 'close' : 'list';
-      document.getElementById('listButton').textContent = txt.textContent;
     }
 
     document.addEventListener("DOMContentLoaded", () => {
