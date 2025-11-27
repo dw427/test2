@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8a generation that has lost romance</title>
+  <title>9a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -157,7 +157,7 @@
       .header img { height: 100%; width: auto; }
     }
 
-    /* 🔥 웹형 수정 완료 구간 */
+    /* 🔥 웹에서는 토글 없이 항상 열림 */
     @media (min-width: 769px) {
       html, body { width: 100%; height: 100%; overflow: hidden; }
       .gallery-wrap { display: flex; height: 100%; }
@@ -182,7 +182,6 @@
         border-left: 1px solid #9fa0a0;
         border-right: 1px solid #9fa0a0;
       }
-      .fixed-image img { width: 100%; height: auto; display: block; cursor: pointer; }
 
       .scroll-area {
         width: 265px;
@@ -197,20 +196,27 @@
         width: 25% !important;
         max-width: 373px;
         right: 0;
+        /* 항상 열림 */
+        transform: translateX(0) !important;
       }
-    }
 
-    @media (max-width: 768px) {
-      .slide-box { transform: translateX(100%) !important; }
-      .slide-box.active { transform: translateX(0) !important; }
+      .slide-list {
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      #listButton {
+        pointer-events: none;
+        opacity: 0;
+      }
     }
   </style>
 </head>
 
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
   <div class="header">
-    <a href="/alfoze/" style="display:block; height:100%;">
-      <img src="/alfoze/images/header.png" alt="header" />
+    <a href="/alfoze/">
+      <img src="/alfoze/images/header.png" alt="header"/>
     </a>
   </div>
 
@@ -240,12 +246,12 @@
     <div id="listButton" onclick="toggleSlideBox()">close</div>
   </div>
 
-  <!-- 🔥 슬라이드 박스 -->
+  <!-- 우측 슬라이드 패널 -->
   <div class="slide-box active" id="slideBox">
     <div class="slide-list" id="slideToggleText" onclick="toggleSlideBox()">close</div>
     <div class="caption-group" id="captionBox"></div>
   </div>
-  
+
   <div class="image-viewer" id="imageViewer">
     <img src="" alt="viewer image" />
   </div>
