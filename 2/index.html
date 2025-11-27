@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>7a generation that has lost romance</title>
+  <title>8a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -18,7 +18,8 @@
     .footer {
       position: fixed; bottom: 0; left: 0;
       width: 100%; height: 100px; background: transparent;
-      z-index: 1000; color: #a3a3a3;
+      z-index: 1000;
+      color: #a3a3a3;
     }
     .footer .right-link,
     .footer #listButton {
@@ -50,21 +51,44 @@
     }
     .slide-box .slide-list:hover { color: #7a7a7a; }
 
-    .caption-group { display: flex; flex-direction: column; font-size: 12px; }
+    .caption-group {
+      display: flex; flex-direction: column; font-size: 12px;
+    }
     .caption1 { font-size: 20px; margin-bottom: 3px; }
     .caption2 { font-size: 12px; margin-bottom: 20px; }
-    .caption3, .caption4, .caption5 { font-size: 12px; margin-bottom: 3px; }
+    .caption3 { font-size: 12px; margin-bottom: 3px; }
+    .caption4 { font-size: 12px; margin-bottom: 3px; }
+    .caption5 { font-size: 12px; }
+
+    .text-group {
+      display: flex; align-items: center;
+      font-size: 12px; padding: 10px 0; white-space: nowrap;
+    }
+    .text1 { margin-left: 10px; }
+    .text2 { margin-left: auto; margin-right: 60px; text-align: right; }
+    .text3 { margin-right: 10px; flex-shrink: 0; }
 
     .content {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 0;
     }
-    .thumbnail { display: flex; flex-direction: column; color: inherit; }
-    .thumbnail img { width: 100%; height: auto; object-fit: cover; display: block; cursor: pointer; }
-    .caption { display: flex; flex-direction: column; margin-top: 8px; font-size: 12px; align-items: flex-start; }
+    .thumbnail {
+      display: flex; flex-direction: column; color: inherit;
+    }
+    .thumbnail img {
+      width: 100%; height: auto; object-fit: cover; display: block;
+      cursor: pointer;
+    }
+    .caption {
+      display: flex; flex-direction: column;
+      margin-top: 8px; font-size: 12px;
+      align-items: flex-start;
+    }
     .caption .title { margin-bottom: 0; }
-    .caption .category-year { display: flex; align-items: center; }
+    .caption .category-year {
+      display: flex; align-items: center;
+    }
     .caption .category { margin-right: 10px; }
 
     ::-webkit-scrollbar { display: none; }
@@ -73,30 +97,50 @@
     .header { display: none; }
 
     .image-viewer {
-      position: fixed; top: 0; left: 0;
+      position: fixed;
+      top: 0; left: 0;
       width: 100vw; height: 100vh;
       background: rgba(0,0,0,0.85);
-      display: flex; justify-content: center; align-items: center;
-      opacity: 0; visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
       transition: opacity .3s ease;
       z-index: 5000;
     }
-    .image-viewer.active { opacity: 1; visibility: visible; }
-    .image-viewer img { max-width: 90%; max-height: 90%; object-fit: contain; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+    .image-viewer.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .image-viewer img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
     .image-viewer::after {
       content: '×';
       position: fixed;
-      top: 20px; right: 30px;
-      font-size: 28px; color: #fff;
-      cursor: pointer; font-family: sans-serif;
+      top: 20px;
+      right: 30px;
+      font-size: 28px;
+      color: #fff;
+      cursor: pointer;
+      font-family: sans-serif;
     }
 
     @media (max-width: 768px) {
       .gallery-wrap { display: block; }
       .left-image { display: none; }
       .fixed-image {
-        width: 100%; padding: 0; display: flex; flex-direction: column; align-items: center;
-        border-left: none; border-right: none;
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-left: none;
+        border-right: none;
       }
       .fixed-image img { width: 100%; height: auto; display: block; }
       .scroll-area { display: none; }
@@ -105,37 +149,61 @@
       .footer #listButton { bottom: 20px; right: 20px; }
       .slide-box { width: 100% !important; padding: 40px 20px; }
       .slide-box .slide-list { bottom: 20px; right: 20px; }
-      .header { width: 100%; height: 60px; background: #fff; display: flex; align-items: center; justify-content: center; position: sticky; top:0; z-index:1000; }
+      .header {
+        width: 100%; height: 60px; background: #ffffff;
+        display: flex; align-items: center; justify-content: center;
+        position: sticky; top: 0; z-index: 1000;
+      }
       .header img { height: 100%; width: auto; }
     }
 
-    /* 웹형 수정 시작 */
+    /* 🔥 웹형 수정 완료 구간 */
     @media (min-width: 769px) {
       html, body { width: 100%; height: 100%; overflow: hidden; }
       .gallery-wrap { display: flex; height: 100%; }
 
-      /* left-image 화면 축소 시 같이 줄어듦 */
       .left-image {
-        flex-shrink: 1;
-        width: clamp(200px, 20vw, 373px);
+        flex-shrink: 0;
+        width: 25%;
         height: 100%;
       }
-      .left-image img { width: 100%; height: 100%; object-fit: cover; }
-
-      /* slide-box 화면 축소 시 같이 줄어듦 */
-      .slide-box {
-        width: clamp(200px, 20vw, 373px) !important;
+      .left-image img {
+        display: block;
+        width: 100%;
         height: 100%;
+        object-fit: cover;
       }
 
-      /* fixed-image, scroll-area는 기존 그대로 */
-      .fixed-image { width: 500px; height: 100%; overflow-y: scroll; padding-bottom: 0; border-left:1px solid #9fa0a0; border-right:1px solid #9fa0a0; }
+      .fixed-image {
+        width: 500px;
+        height: 100%;
+        overflow-y: scroll;
+        padding-bottom: 0;
+        border-left: 1px solid #9fa0a0;
+        border-right: 1px solid #9fa0a0;
+      }
       .fixed-image img { width: 100%; height: auto; display: block; cursor: pointer; }
 
-      .scroll-area { width: 265px; height: 100vh; overflow-y: scroll; border-right:1px solid #9fa0a0; }
+      .scroll-area {
+        width: 265px;
+        height: 100vh;
+        overflow-y: scroll;
+        border-right: 1px solid #9fa0a0;
+      }
+
       .thumbnail { margin-bottom: 8px; }
+
+      .slide-box {
+        width: 25% !important;
+        max-width: 373px;
+        right: 0;
+      }
     }
-    /* 웹형 수정 끝 */
+
+    @media (max-width: 768px) {
+      .slide-box { transform: translateX(100%) !important; }
+      .slide-box.active { transform: translateX(0) !important; }
+    }
   </style>
 </head>
 
@@ -147,7 +215,9 @@
   </div>
 
   <div class="gallery-wrap">
-    <div class="left-image"><img src="/alfoze/images/leftimage.png" alt="left image" /></div>
+    <div class="left-image">
+      <img src="/alfoze/images/leftimage.png" alt="left image" />
+    </div>
 
     <div class="fixed-image">
       <img src="/alfoze/images/2-romance/romance1.png" alt="romance1" />
@@ -160,7 +230,9 @@
       <img src="/alfoze/images/2-romance/romance7.png" alt="romance8" />
     </div>
 
-    <div class="scroll-area"><div class="content" id="gallery"></div></div>
+    <div class="scroll-area">
+      <div class="content" id="gallery"></div>
+    </div>
   </div>
 
   <div class="footer">
@@ -168,11 +240,12 @@
     <div id="listButton" onclick="toggleSlideBox()">close</div>
   </div>
 
+  <!-- 🔥 슬라이드 박스 -->
   <div class="slide-box active" id="slideBox">
     <div class="slide-list" id="slideToggleText" onclick="toggleSlideBox()">close</div>
     <div class="caption-group" id="captionBox"></div>
   </div>
-
+  
   <div class="image-viewer" id="imageViewer">
     <img src="" alt="viewer image" />
   </div>
@@ -181,6 +254,7 @@
     async function loadData() {
       const res = await fetch("../data.json");
       const data = await res.json();
+
       const pathParts = window.location.pathname.split("/");
       const idx = parseInt(pathParts[pathParts.length-2], 10);
       const item = data[idx-1];
@@ -228,14 +302,18 @@
 
       const viewer = document.getElementById("imageViewer");
       const viewerImg = viewer.querySelector("img");
+
       document.querySelectorAll(".fixed-image img").forEach(img => {
         img.addEventListener("click", () => {
           viewerImg.src = img.src;
           viewer.classList.add("active");
         });
       });
+
       viewer.addEventListener("click", () => viewer.classList.remove("active"));
-      document.addEventListener("keydown", e => { if (e.key === "Escape") viewer.classList.remove("active"); });
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") viewer.classList.remove("active");
+      });
     });
   </script>
 </body>
