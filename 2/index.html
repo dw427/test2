@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>24a generation that has lost romance</title>
+  <title>25a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -29,7 +29,6 @@
     .footer #listButton { right: 30px; cursor: pointer; }
     .footer #listButton:hover { color: #7a7a7a; }
 
-    /* 기본(모바일 우선) slide-box 설정 (모바일에서는 기존 동작 유지) */
     .slide-box {
       position: fixed; top: 0; right: 0;
       width: 373px !important; max-width: 100%; height: 100%;
@@ -131,7 +130,6 @@
       font-family: sans-serif;
     }
 
-    /* 모바일 기존 동작 유지 (절대 건드리지 않음) */
     @media (max-width: 768px) {
       .gallery-wrap { display: block; }
       .left-image { display: none; }
@@ -158,7 +156,6 @@
       }
       .header img { height: 100%; width: auto; }
 
-      /* 모바일 토글 동작 유지 */
       .slide-box { transform: translateX(100%) !important; }
       .slide-box.active { transform: translateX(0) !important; }
     }
@@ -167,33 +164,45 @@
     @media (min-width: 769px) {
       html, body { width: 100%; height: 100%; overflow: hidden; }
 
-      /* 비율(퍼센트) 기반 칼럼 — 비율 = 373 : 500 : 265 : 373 (합 1511) */
-      /* 퍼센트는 소수 둘째 자리로 반올림하여 사용 */
       .gallery-wrap {
         display: grid;
         height: 100%;
         grid-template-columns:
-          24.68% 33.10% 17.55% 24.68%; /* left / fixed / scroll / toggle 비율 */
+          24.68% 33.10% 17.55% 24.68%;
       }
 
-      /* 각 칸의 최대 너비(원래 픽셀값)를 설정 — 넓을 때 원래 픽셀 유지 */
       .left-image { max-width: 373px; height: 100%; overflow: hidden; }
-      .fixed-image { max-width: 500px; height: 100%; overflow-y: auto; }
-      .scroll-area { max-width: 265px; height: 100vh; overflow-y: auto; }
+      .fixed-image { max-width: 500px; height: 100%; overflow-y: auto; position: relative; }
+      .scroll-area { max-width: 265px; height: 100vh; overflow-y: auto; position: relative; }
       .slide-box { max-width: 373px; height: 100%; overflow-y: auto; position: relative; transform: none !important; }
 
-      /* 외관 */
-      .left-image img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+      .left-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
       .fixed-image img { width: 100%; height: auto; display: block; cursor: pointer; }
       .thumbnail { margin-bottom: 8px; }
 
-      /* 웹형에서는 토글 버튼 UI 숨김 (토글 대신 고정 캡션영역) */
       .slide-list, #listButton { display: none; }
+
+      /* 🔹 fixed-image 오른쪽 라인 */
+      .fixed-image::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        height: 100%;
+        background: #9fa0a0;
+      }
+
+      /* 🔹 scroll-area 오른쪽 라인 */
+      .scroll-area::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        height: 100%;
+        background: #9fa0a0;
+      }
     }
   </style>
 </head>
@@ -225,7 +234,6 @@
       <div class="content" id="gallery"></div>
     </div>
 
-    <!-- 웹형에서는 이 .slide-box가 4번째 칸(고정된 캡션영역)으로 동작 -->
     <div class="slide-box active" id="slideBox">
       <div class="slide-list" id="slideToggleText" onclick="toggleSlideBox()">close</div>
       <div class="caption-group" id="captionBox"></div>
@@ -280,7 +288,6 @@
       `;
     }
 
-    /* 데스크탑에서는 토글 비활성, 모바일에서만 토글 작동하도록 처리 */
     function toggleSlideBox() {
       if (window.innerWidth <= 768) {
         const sb = document.getElementById('slideBox');
