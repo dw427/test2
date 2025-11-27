@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>23a generation that has lost romance</title>
+  <title>24a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -29,6 +29,7 @@
     .footer #listButton { right: 30px; cursor: pointer; }
     .footer #listButton:hover { color: #7a7a7a; }
 
+    /* 기본(모바일 우선) slide-box 설정 (모바일에서는 기존 동작 유지) */
     .slide-box {
       position: fixed; top: 0; right: 0;
       width: 373px !important; max-width: 100%; height: 100%;
@@ -60,6 +61,14 @@
     .caption4 { font-size: 12px; margin-bottom: 3px; }
     .caption5 { font-size: 12px; }
 
+    .text-group {
+      display: flex; align-items: center;
+      font-size: 12px; padding: 10px 0; white-space: nowrap;
+    }
+    .text1 { margin-left: 10px; }
+    .text2 { margin-left: auto; margin-right: 60px; text-align: right; }
+    .text3 { margin-right: 10px; flex-shrink: 0; }
+
     .content {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -78,7 +87,9 @@
       align-items: flex-start;
     }
     .caption .title { margin-bottom: 0; }
-    .caption .category-year { display: flex; align-items: center; }
+    .caption .category-year {
+      display: flex; align-items: center;
+    }
     .caption .category { margin-right: 10px; }
 
     ::-webkit-scrollbar { display: none; }
@@ -120,7 +131,7 @@
       font-family: sans-serif;
     }
 
-    /* 🔥 모바일 그대로 */
+    /* 모바일 기존 동작 유지 (절대 건드리지 않음) */
     @media (max-width: 768px) {
       .gallery-wrap { display: block; }
       .left-image { display: none; }
@@ -146,51 +157,48 @@
         position: sticky; top: 0; z-index: 1000;
       }
       .header img { height: 100%; width: auto; }
+
+      /* 모바일 토글 동작 유지 */
+      .slide-box { transform: translateX(100%) !important; }
+      .slide-box.active { transform: translateX(0) !important; }
     }
 
-    /* 🔥 웹형 — 요청사항 100% 반영 */
+    /* ========== 웹형 (min-width:769px) : 비율축소 + 원래픽셀크기 상한 적용 ========== */
     @media (min-width: 769px) {
       html, body { width: 100%; height: 100%; overflow: hidden; }
 
+      /* 비율(퍼센트) 기반 칼럼 — 비율 = 373 : 500 : 265 : 373 (합 1511) */
+      /* 퍼센트는 소수 둘째 자리로 반올림하여 사용 */
       .gallery-wrap {
         display: grid;
         height: 100%;
-        grid-template-columns: 1fr 1fr 1fr 1fr; /* 4단 동일 */
+        grid-template-columns:
+          24.68% 33.10% 17.55% 24.68%; /* left / fixed / scroll / toggle 비율 */
       }
 
-      .left-image,
-      .fixed-image,
-      .scroll-area,
-      .slide-box {
-        height: 100%;
-        overflow-y: auto;
-        border-right: 1px solid #9fa0a0;
-      }
+      /* 각 칸의 최대 너비(원래 픽셀값)를 설정 — 넓을 때 원래 픽셀 유지 */
+      .left-image { max-width: 373px; height: 100%; overflow: hidden; }
+      .fixed-image { max-width: 500px; height: 100%; overflow-y: auto; }
+      .scroll-area { max-width: 265px; height: 100vh; overflow-y: auto; }
+      .slide-box { max-width: 373px; height: 100%; overflow-y: auto; position: relative; transform: none !important; }
 
-      .left-image { display: flex; }
+      /* 외관 */
       .left-image img {
-        width: 100%; height: 100%; object-fit: cover;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
+      .fixed-image img { width: 100%; height: auto; display: block; cursor: pointer; }
+      .thumbnail { margin-bottom: 8px; }
 
-      .fixed-image img {
-        width: 100%; height: auto; display: block; cursor: pointer;
-      }
-
-      /* 🔥 토글 고정 출력 */
-      .slide-box {
-        position: relative;
-        padding: 20px;
-        background: #fff;
-        transform: none !important;
-      }
-      .slide-list,
-      #listButton { display: none !important; } /* 토글 숨김 */
+      /* 웹형에서는 토글 버튼 UI 숨김 (토글 대신 고정 캡션영역) */
+      .slide-list, #listButton { display: none; }
     }
   </style>
 </head>
 
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
-
   <div class="header">
     <a href="/alfoze/" style="display:block; height:100%;">
       <img src="/alfoze/images/header.png" alt="header" />
@@ -203,22 +211,23 @@
     </div>
 
     <div class="fixed-image">
-      <img src="/alfoze/images/2-romance/romance1.png" />
-      <img src="/alfoze/images/2-romance/romance2.png" />
-      <img src="/alfoze/images/2-romance/romance3.png" />
-      <img src="/alfoze/images/2-romance/romance4.png" />
-      <img src="/alfoze/images/2-romance/romance5.png" />
-      <img src="/alfoze/images/2-romance/romance6.png" />
-      <img src="/test/images/2-romance/romance8-1.gif" />
-      <img src="/alfoze/images/2-romance/romance7.png" />
+      <img src="/alfoze/images/2-romance/romance1.png" alt="romance1" />
+      <img src="/alfoze/images/2-romance/romance2.png" alt="romance2" />
+      <img src="/alfoze/images/2-romance/romance3.png" alt="romance3" />
+      <img src="/alfoze/images/2-romance/romance4.png" alt="romance4" />
+      <img src="/alfoze/images/2-romance/romance5.png" alt="romance5" />
+      <img src="/alfoze/images/2-romance/romance6.png" alt="romance6" />
+      <img src="/test/images/2-romance/romance8-1.gif" alt="romance7" />
+      <img src="/alfoze/images/2-romance/romance7.png" alt="romance8" />
     </div>
 
     <div class="scroll-area">
       <div class="content" id="gallery"></div>
     </div>
 
-    <div class="slide-box" id="slideBox">
-      <div class="slide-list" id="slideToggleText">close</div>
+    <!-- 웹형에서는 이 .slide-box가 4번째 칸(고정된 캡션영역)으로 동작 -->
+    <div class="slide-box active" id="slideBox">
+      <div class="slide-list" id="slideToggleText" onclick="toggleSlideBox()">close</div>
       <div class="caption-group" id="captionBox"></div>
     </div>
   </div>
@@ -271,7 +280,7 @@
       `;
     }
 
-    /* 🔥 웹형에서는 토글 기능 비활성 — 모바일에서만 작동 */
+    /* 데스크탑에서는 토글 비활성, 모바일에서만 토글 작동하도록 처리 */
     function toggleSlideBox() {
       if (window.innerWidth <= 768) {
         const sb = document.getElementById('slideBox');
@@ -284,20 +293,22 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       loadData();
+
       const viewer = document.getElementById("imageViewer");
       const viewerImg = viewer.querySelector("img");
+
       document.querySelectorAll(".fixed-image img").forEach(img => {
         img.addEventListener("click", () => {
           viewerImg.src = img.src;
           viewer.classList.add("active");
         });
       });
+
       viewer.addEventListener("click", () => viewer.classList.remove("active"));
       document.addEventListener("keydown", e => {
         if (e.key === "Escape") viewer.classList.remove("active");
       });
     });
   </script>
-
 </body>
 </html>
