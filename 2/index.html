@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5a generation that has lost romance</title>
+  <title>6a generation that has lost romance</title>
   <link rel="icon" type="image/png" href="/alfoze/images/fav.png" />
   <link rel="apple-touch-icon" href="/alfoze/images/fav.png" />
   <meta name="theme-color" content="#ffffff" />
@@ -31,7 +31,7 @@
 
     .slide-box {
       position: fixed; top: 0; right: 0;
-      width: 373px; max-width: 100%; height: 100%;
+      width: 373px !important; max-width: 100%; height: 100%;
       background: #fff; z-index: 3000;
       transform: translateX(100%); transition: transform .3s;
       overflow-y: auto;
@@ -59,6 +59,14 @@
     .caption3 { font-size: 12px; margin-bottom: 3px; }
     .caption4 { font-size: 12px; margin-bottom: 3px; }
     .caption5 { font-size: 12px; }
+
+    .text-group {
+      display: flex; align-items: center;
+      font-size: 12px; padding: 10px 0; white-space: nowrap;
+    }
+    .text1 { margin-left: 10px; }
+    .text2 { margin-left: auto; margin-right: 60px; text-align: right; }
+    .text3 { margin-right: 10px; flex-shrink: 0; }
 
     .content {
       display: grid;
@@ -122,7 +130,7 @@
       font-family: sans-serif;
     }
 
-    /* 모바일 */
+    /* 🔥 모바일 */
     @media (max-width: 768px) {
       .gallery-wrap { display: block; }
       .left-image { display: none; }
@@ -150,31 +158,28 @@
       .header img { height: 100%; width: auto; }
     }
 
-    /* 웹형 */
+    /* 🔥 웹형 */
     @media (min-width: 769px) {
       html, body { width: 100%; height: 100%; overflow: hidden; }
       .gallery-wrap { display: flex; height: 100%; }
 
-      /* left-image를 비율로 조정 */
+      /* left-image와 slide-box 같이 줄어들게 */
       .left-image {
-        flex-shrink: 0;
-        width: clamp(200px, 20vw, 373px);
+        width: clamp(200px, 15vw, 373px);
         height: 100%;
       }
+      .slide-box {
+        width: clamp(200px, 15vw, 373px) !important;
+      }
+
       .left-image img {
-        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
 
-      /* slide-box를 비율로 조정 */
-      .slide-box {
-        width: clamp(200px, 20vw, 373px);
-      }
-
       .fixed-image {
-        width: 500px; /* 절대값 유지 */
+        width: 500px;
         height: 100%;
         overflow-y: scroll;
         padding-bottom: 0;
@@ -184,7 +189,7 @@
       .fixed-image img { width: 100%; height: auto; display: block; cursor: pointer; }
 
       .scroll-area {
-        width: 265px; /* 절대값 유지 */
+        width: 265px;
         height: 100vh;
         overflow-y: scroll;
         border-right: 1px solid #9fa0a0;
@@ -192,7 +197,7 @@
       .thumbnail { margin-bottom: 8px; }
     }
 
-    /* 모바일 slide-box 기본 닫힘 */
+    /* 🔥 모바일 slide-box 기본 닫힘 */
     @media (max-width: 768px) {
       .slide-box { transform: translateX(100%) !important; }
       .slide-box.active { transform: translateX(0) !important; }
